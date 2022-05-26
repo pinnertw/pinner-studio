@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Squarez!</title>
+  <meta content="A fully on chain animated dynamic ugly tool pass NFT" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.ico" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Variables CSS Files. -->
+  <link href="assets/css/variables-green.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top" data-scrollto-offset="0">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
+        <h1>Squarez<span>!</span></h1>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto" href="index.html">Home</a></li>
+          <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
+          <li><a class="nav-link scrollto" href="index.html#team">Team</a></li>
+          <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle d-none"></i>
+      </nav><!-- .navbar -->
+      
+
+      <div style="text-align:right;">
+          <a href="https://www.discord.gg/TQUJks2yDZ">
+              <img src="assets/svg/discord.svg" height="40" width="40" class="img-fulid animated" style="margin-right: 0.6em;">
+          </a>
+          <a href="https://www.twitter.com/Squarez_NFT">
+              <img src="assets/svg/Twitter_Bird.svg" height="40" width="40" class="img-fulid animated" style="margin-right: 0.6em;">
+          </a>
+          <a href="https://opensea.io/collection/squarez-alpha">
+              <img src="assets/svg/opensea.svg" height="40" width="40" class="img-fulid animated">
+          </a>
+      </div>
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- TODO script button -->
+  <!-- TRY LOCAL 
+  <script type="module" src="./ethers-5.2.esm.min.js">
+      import { ethers } from "./ethers-5.2.esm.min.js";
+      -->
+      <script type="module" src="./ethers-5.2.esm.min.js">
+	      import { ethers } from "./ethers-5.2.esm.min.js";
+
+      console.log("Test");
+      async function mint() {
+	      const provider = new ethers.providers.Web3Provider(window.ethereum);
+	      await provider.send("eth_requestAccounts", []);
+	      const signer = provider.getSigner();
+
+	      //const squareAddress = "0xBADC22968EeE7926C418639bF5FCCF0f1eDeA4E9";
+	      const squareAddress = "0x9041Cf5F07185F9b77cEAE2639B223E7C4E67f80";
+	      const squareAbi = [
+		  "function mint(uint256 quantity) external payable"
+	      ];
+	      const squareContract = new ethers.Contract(squareAddress, squareAbi, provider);
+	      const squareWithSigner = squareContract.connect(signer);
+
+	      var quantity = parseInt(document.getElementById("quantity").value);
+	      squareWithSigner.mint(quantity, { value: ethers.utils.parseEther( (0.0069*quantity).toFixed(5) ) });
+	      };
+      document.getElementById("mint").onclick = mint;
+  </script>
+
+  <section id="hero-animated" class="hero-animated d-flex align-items-center">
+    <div class="container d-flex flex-column justify-content-center align-items-center text-center position-relative" data-aos="zoom-out">
+      <img src="assets/svg/test3.svg" class="img-fluid animated">
+      <h3>Welcome to <span>Squarez</span>!</h3>
+      <p>An on chain animated dynamic pixelized ugly tool pass. The first NFT trading signal purely based on listing/sales. I'm here to flip for you.</p>
+      <p>Mint price: 0.0069 eth</p>
+      <p>Max mint per address: 5</p>
+      <div class="d-flex">
+	      <label for="quantity"> Quantity:</label>
+      <select id="quantity">
+	      <option value="none">-</option>
+	      <option value="1">1</option>
+	      <option value="2">2</option>
+	      <option value="3">3</option>
+	      <option value="4">4</option>
+	      <option value="5">5</option>
+      </select>
+	<input id="mint" type="button" value="Mint">
+      </div>
+      <p>If you bypassed the max mint quantity, metamask will simply not show up. </p>
+    </div>
+  </section>
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>About Squarez</h2>
+          <h4 align="left">I am a holder of Killer GF and Wonder Pals and I couldn't understand the April meta anymore. At that moment, there were pixelized photo, blue chips, tool passes and animation rocketing and I've caught none of them.</h4>
+          <h4 align="left"> So this is a collection trying to be ironic, mixing all of them up.</h4>
+	  <h4 align="left">Otherwise, I've found an alpha signal which works with Opensea listing and sales history. It makes 24 eth from January to March without any tuning. I wasn't able to follow it since I don't have enough fund and enough time. So this is also a crowd fund collection to build this up. Squarez holders will be the first to get the alpha signal.</h4>
+        </div>
+
+        <div class="row g-4 g-lg-5" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-12">
+            <h3 class="pt-0 pt-lg-5">A fully on-chain animated dynamic pixelized ugly tool pass NFT.</h3>
+
+            <!-- Tabs -->
+            <ul class="nav nav-pills mb-3">
+              <li><a class="nav-link active" data-bs-toggle="pill" href="#tab0">Roadmap</a></li>
+              <li><a class="nav-link" data-bs-toggle="pill" href="#tab1">Fully on-chain</a></li>
+              <li><a class="nav-link" data-bs-toggle="pill" href="#tab2">Animated</a></li>
+              <li><a class="nav-link" data-bs-toggle="pill" href="#tab3">Dynamic</a></li>
+              <li><a class="nav-link" data-bs-toggle="pill" href="#tab4">Tool pass</a></li>
+              <li><a class="nav-link" data-bs-toggle="pill" href="#tab5">Benefits</a></li>
+            </ul><!-- End Tabs -->
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="tab0">
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>Acquire an alpha shark NFT for flipping. (I did earn some eth with solely gem swap, x2y2, free coniun chart and my signal. It turns out that alpha shark can be good for me even I don't do the sniping stuff.)</h4>
+                </div>
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>Every month, I'll give 1~4 eth back to the community. This depends surely on the monthly return but normally I can earn far more from it. The community decides how I distribute them (giveaway/split)</h4>
+                </div>
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4> Website signals integration. Waiting for collab.</h4>
+                </div>
+              </div><!-- End Tab 1 Content -->
+
+              <div class="tab-pane fade show" id="tab1">
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>This NFT collection is fully on-chain!</h4>
+                </div>
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>Every NFT is encoded with Base64, under the svg format.</h4>
+                </div>
+              </div><!-- End Tab 1 Content -->
+
+              <div class="tab-pane fade show" id="tab2">
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>Every one got Laser Eyes. No need to snipe!</h4>
+                </div>
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>If you are poor enough, another animated trait could show up...</h4>
+                </div>
+              </div><!-- End Tab 2 Content -->
+
+              <div class="tab-pane fade show" id="tab3">
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>Over time and the number of ETH in your address, the laser eyes change their colors.</h4>
+                </div>
+
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>An animated trait appears when you have less than 1 ETH in your wallet.</h4>
+                </div>
+              </div><!-- End Tab 3 Content -->
+
+              <div class="tab-pane fade show" id="tab4">
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>An alpha signal which makes 24 ETH on a total of 28 collections.</h4>
+                </div>
+
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>Sharpe ratio = 1</h4>
+                </div>
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>Still in development. But I will flip for you first.</h4>
+                </div>
+              </div><!-- End Tab 4 Content -->
+
+              <div class="tab-pane fade show" id="tab5">
+                <div class="d-flex align-items-center mt-4">
+                  <i class="bi bi-check2"></i>
+                  <h4>The funds will be used to flip. Unlike other projects using unsure income (royalties, staking), this income will be real.</h4>
+                </div>
+
+              </div><!-- End Tab 5 Content -->
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Featured Services Section ======= -->
+    <section id="onfocus" class="onfocus">
+      <div class="container" data-aos="fade-up">
+
+	      <div class="row g-5">
+		      <div class="content d-flex flex-column justify-content-center h-100">
+			      <h3> Mint information</h3>
+			      <p class="fst-italic">
+			      I ask for a little amount, since the product is still not online yet. And I really need some funds to be more concentrate on it.
+			      </p>
+			      <ul>
+				      <li><i class="bi bi-check-circle"></i> Total supply: 4200 </li>
+				      <li><i class="bi bi-check-circle"></i> Mint price: 0.0069 eth </li>
+				      <li><i class="bi bi-check-circle"></i> Max mint per address: 5 </li>
+				      <li><i class="bi bi-check-circle"></i> Public mint: right now </li>
+			      </ul>
+		      </div>
+	      </div>
+      </div>
+    </section>
+    <!-- ======= Call To Action Section ======= -->
+    <section id="cta" class="cta">
+      <div class="container" data-aos="zoom-out">
+
+        <div class="row g-5">
+
+          <div class="col-lg-8 col-md-6 content d-flex flex-column justify-content-center order-last order-md-first">
+              <h3>Join the <em>community</em>!</h3>
+              <a class="cta-btn align-self-start" href="index.html">Mint</a> <!-- TODO mint out! -->
+            <a class="cta-btn align-self-start" href="https://opensea.io/collection/squarez-alpha">Buy on Opensea</a>
+          </div>
+
+          <div class="col-lg-4 col-md-6 order-first order-md-last d-flex align-items-center">
+            <div class="img">
+              <img src="assets/svg/test2.svg" alt="" class="img-fluid">
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Call To Action Section -->
+
+    <!-- ======= F.A.Q Section ======= -->
+    <section id="faq" class="faq">
+      <div class="container" data-aos="zoom-out">
+
+        <div class="row g-5">
+
+          <div class="col-lg-8 col-md-6 content d-flex flex-column justify-content-center order-last order-md-first">
+
+            <div class="content px-xl-5">
+              <h3>Frequently Asked <strong>Questions</strong></h3>
+              <p>
+              Feel free to find me on twitter or discord for further questions!
+              </p>
+            </div>
+
+            <div class="accordion accordion-flush px-xl-5" id="faqlist">
+
+              <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    How do we get the alpha signal?
+                  </button>
+                </h3>
+                <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                      I will give you access to my github project. Feel free to use it but no further developement is guaranteed.
+                      Attention! I will only give them out once mint out.
+                  </div>
+                </div>
+              </div><!-- # Faq item-->
+
+              <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    Who is Pinner?
+                  </button>
+                </h3>
+                <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    I'm currently a quantitative researcher in a little firm. I've studied signals in NFT market and the results were fruitful. However, I don't have enough time to send it to production. So I would like to spread it out in this way, a Web3 way.
+                  </div>
+                </div>
+              </div><!-- # Faq item-->
+
+              <div class="accordion-item" data-aos="fade-up" data-aos-delay="400">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    Where will the mint price/royalties go?
+                  </button>
+                </h3>
+                <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    Did I say that I'm a quantitative researcher? They will be my future funds. If I earn enough profits, I will give them back to the community.
+                  </div>
+                </div>
+              </div><!-- # Faq item-->
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End F.A.Q Section -->
+
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>Our Team</h2>
+          <p>Actively looking for partners :)</p>
+        </div>
+
+        <div class="row gy-5">
+
+          <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="200">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="assets/img/team/newpfp.png" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+                <div class="social">
+                  <a href="https://twitter.com/wayne567tw1"><i class="bi bi-twitter"></i></a>
+                </div>
+                <h4>Pinner</h4>
+                <span>Web designer + Contract deployer + Artist</span>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+        </div>
+
+      </div>
+    </section><!-- End Team Section -->
+
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-header">
+          <h2>Contact Us</h2>
+          <p>Follow us on <a href="https://twitter.com/Squarez_NFT">twitter</a> or <a href="https://discord.gg/TQUJks2yDZ">discord</a>!</p>
+        </div>
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
